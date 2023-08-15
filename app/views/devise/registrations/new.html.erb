@@ -1,29 +1,46 @@
-<h2>Sign up</h2>
+<div class="container home-sections d-flex flex-row justify-content-center align-items-center">
+  <div class="images-section pt-3 d-none d-lg-block"></div>
+  <div class="login-section pt-3">
+    <div class="card text-center pt-5" style="width: 23rem;">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= image_tag 'logo.png', class: "card-img-top" %>
+        <div class="card-body">
+          <div class="mb-3 mt-4">
+            <%= f.text_field :full_name, placeholder: "Enter your Full Name", class: "form-control" %>
+          </div>
+          <div class="mb-3 mt-4">
+            <%= f.text_field :username, placeholder: "Enter your Username", class: "form-control" %>
+          </div>
+          <div class="mb-3 mt-4">
+            <%= f.email_field :email, placeholder: "Enter your Email", class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= f.password_field :password, placeholder: "Enter your Password", class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= f.password_field :password_confirmation, placeholder: "Confirm Password", class: "form-control" %>
+          </div>
+          <%= f.submit "Sign Up", class: "btn btn-primary d-block form-control" %>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="d-flex align-items-center mt-4">
+            <div class="line"></div>
+            <div class="line-text">OK</div>
+            <div class="line"></div>
+          </div>
+          <a href="#" class="d-block mt-4 text-decoration-none fw-bold">
+            <%= image_tag "facebook.png", class: "facebook" %> Login with Facebook
+          </a>
+          <a href="#" class="fs-6 d-block my-4 text-decoration-none">Forgot Password?</a>
+        </div>
+      <% end %>
+    </div>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+
+    <div class="card text-center py-2 mt-3" style="width: 23rem;">
+      <div class="card-text">
+        Already have an account?
+        <%= link_to "Login", new_user_session_path, class: "fs-6 my-4 text-decoration-none" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

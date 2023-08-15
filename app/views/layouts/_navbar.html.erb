@@ -1,36 +1,36 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
-          </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-          </ul>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
-        </li>
-      </ul>
-      <form class="d-flex" role="search">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
+<nav class="navbar navbar-expand-lg bg-body-tertiary sticky-top bg-white border-bottom " style="border-color: #666666">
+  <div class="container-fluid d-flex justify-content-between" style="padding:0.5rem 3rem; max-width: 1400px;">
+    <div>
+      <%= link_to root_path, class: "navbar-brand" do %>
+        <%= image_tag "logo.png", style: "height:36px;" %>
+      <% end %>
+      <button class="navbar-toggler toggler-on-sm" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon "></span>
+      </button>
+    </div>
+    <div class="collapse navbar-collapse on-lg-flex-center" id="navbarSupportedContent">
+      <form class="d-flex position-relative d-flex align-items-center" style="border-radius: 5px;background-color: rgba(0,0,0,0.1);width:20rem;height: 36px;" role="search">
+        <svg style="z-index: 33; margin-right: 8px; padding-left: 10px;" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="hover-pointer bi bi-search start-2 z-3 " viewBox="0 0 16 16">
+          <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+        <input class="bg-transparent  me-2 top-0 bottom-0 start-0 end-0 z-1 custom-input-focus-none" type="search" placeholder="Search" aria-label="Search" >
       </form>
+    </div>
+    <div class="d-flex gap-4 align-items-center " id="nav-icons-group">
+      <%= link_to root_path do %>
+        <i class="fa-solid fa-house fa-xl hover-pointer hover-scale"></i>
+      <% end %>
+      <i class="fa-brands fa-facebook-messenger fa-xl hover-pointer hover-scale" style="color: #8b7e7e;"></i>
+      <%= link_to new_post_path do %>
+        <i class="fa-solid fa-arrow-up-from-bracket fa-xl hover-pointer hover-scale"></i>
+      <% end %>
+      <i class="fa-regular fa-compass fa-xl hover-pointer hover-scale"></i>
+      <i class="fa-regular fa-heart fa-xl hover-pointer hover-scale"></i>
+      <% if current_user && current_user.profile_picture.attached?  %>
+        <%= image_tag current_user.profile_picture %>
+      <% else %>
+        <i class="fa-regular fa-user fa-xl hover-pointer hover-scale"></i>
+      <% end %>
     </div>
   </div>
 </nav>

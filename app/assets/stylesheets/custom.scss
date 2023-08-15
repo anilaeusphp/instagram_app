@@ -110,3 +110,64 @@ body {
   text-decoration: none;
   color: black
 }
+
+@media (max-width: 768px) { /* Adjust the breakpoint value as needed */
+  .customized-card-for-views {
+    width: 20rem;
+  }
+}
+@media (min-width: 770px){
+  .customized-card-for-views{
+    width: 30rem;
+  }
+}
+
+
+.custom-two-lined-truncate
+{
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.custom-input-focus-none{
+  border: none;
+  outline: none;
+}
+
+.custom-input-focus-none:focus{
+  outline: none;
+  border: none;
+}
+
+.hover-pointer:hover{
+  cursor: pointer;
+}
+
+.hover-scale:hover{
+  transform: scale(1.15);
+  transition: 0.1s all ease-in-out;
+}
+
+@media (min-width: 768px){
+  .on-lg-flex-center{
+    display: flex;
+    justify-content: center;
+  }
+}
+
+@media (max-width:768px){
+  #nav-icons-group{
+    display: none;
+    visibility: hidden;
+    width: 0;
+  }
+}
+
+@media (min-width: 768px){
+  #align-hamburger-to-right {
+    position:absolute;
+    right: 2rem;
+  }
+}
