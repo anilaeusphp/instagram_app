@@ -7,12 +7,12 @@
           <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body d-flex">
+        <div class="modal-body d-flex align-modal-under">
 
-          <div class="border border-secondary mx-2" style="width: 60%">
-            <%= form.file_field :images, multiple: true %>
+          <div class="border border-secondary mx-2" style="width: 60%;">
+            <%= form.file_field :images, multiple: true, class: 'filepond'  %>
           </div>
-          <div>
+          <div style="width: 40%; display: flex; flex-direction: column; flex-wrap: wrap">
             <% if post.errors.any? %>
               <div style="color: red">
                 <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
@@ -25,35 +25,43 @@
             <% end %>
             <%= image_tag (current_user.profile_picture.attached? ? current_user.profile_picture : "user-pp.png"),
                           style: "border-radius: 50%; width:24px; height:24px; border: 1px solid rgba(0,0,0,0.35); padding:1px; margin-right:8px; " %> <%= current_user.username %>
-            <div>
-              <%= form.text_area :caption, rows: 7, placeholder: "Write a caption..." , class: " border-0" , style: "resize:none; outline:none; border:none; margin-top: 10px;"%>
+            <div style="width: 100%;">
+              <%= form.text_area :caption, rows: 7, placeholder: "Write a caption..." , class: " border-0" , style: "width:100%;resize:none; outline:none; border:none; margin-top: 10px;"%>
             </div>
 
-            <div>
+            <div style="width: 100%;">
+              <%= form.text_field :location, placeholder: "Add Location", class: "form-control" %>
+            </div>
+
+            <div style="width: 100%;">
               <%= form.label :longitude, style: "display: block" %>
-              <%= form.text_field :longitude %>
+              <%= form.text_field :longitude , style: "width:100%;"%>
             </div>
 
-            <div>
+            <div style="width: 100%;">
               <%= form.label :latitude, style: "display: block" %>
-              <%= form.text_field :latitude %>
+              <%= form.text_field :latitude , style: "width:100%;"%>
             </div>
 
-            <div>
+            <div style="width: 100%;">
               <%= form.label :user_id, style: "display: block" %>
-              <%= form.collection_select :user_id, User.all, :id, :email %>
+              <%= form.collection_select :user_id,  User.all, :id, :email, {}, { style: "width:100%;"}%>
+            </div>
+            <a class="btn btn-outline-secondary" style="margin:10px 0;" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Additional Settings
+            </a>
+            <div class="collapse" id="collapseExample" style="width: 100%;">
+              <div class="form-check form-switch" style="width: 100%;">
+                <%= form.check_box :allow_comments, style: "display: block", class: "form-check-input", type: "checkbox", role: "switch", id: "allowCommentSwitcher" %>
+                <%= form.label :allow_comments,  class: "form-check-label", for: "allowCommentSwitcher" %>
+              </div>
+
+              <div class="form-check form-switch" style="width: 100%;">
+                <%= form.check_box :show_likes_count, style: "display: block", class: "form-check-input", type: "checkbox", role: "switch", id: "showLikesSwitcher" %>
+                <%= form.label :show_likes_count,  class: "form-check-label", for: "showLikesSwitcher" %>
+              </div>
             </div>
 
-
-            <div>
-              <%= form.label :allow_comments, style: "display: block" %>
-              <%= form.check_box :allow_comments %>
-            </div>
-
-            <div>
-              <%= form.label :show_likes_count, style: "display: block" %>
-              <%= form.check_box :show_likes_count %>
-            </div>
           </div>
 
 

@@ -21,12 +21,12 @@
 
     <div class="card-body">
       <div id="carouselExampleIndicators-<%= post.id %>" class="carousel slide" data-bs-ride="true">
-      <div class="carousel-indicators">
+        <div class="carousel-indicators">
           <% post.images.each_with_index do |image, index| %>
-          <button type="button" class="<%= index == 0 ? 'active bg-dark' : 'bg-dark' %>"
-                  <%= index == 0 ? 'aria-current="true"' : '' %> data-bs-target="#carouselExampleIndicators-<%= post.id %>" data-bs-slide-to="<%= index %>" aria-label="Slide <%= index + 1 %>"></button>
+            <button type="button" class="<%= index == 0 ? 'active bg-dark' : 'bg-dark' %>"
+                    <%= index == 0 ? 'aria-current="true"' : '' %> data-bs-target="#carouselExampleIndicators-<%= post.id %>" data-bs-slide-to="<%= index %>" aria-label="Slide <%= index + 1 %>"></button>
 
-      <% end %>
+          <% end %>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= post.id %>" data-bs-slide="prev">
           <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
@@ -38,7 +38,9 @@
         </button>
         <div class="carousel-inner" style="position: static">
           <div class="carousel-item active" style="height: 25rem;">
-            <%= image_tag post.images.first, class: "d-block w-100", alt: "first - slide" %>
+            <% if post.images.size > 0 %>
+              <%= image_tag post.images.first, class: "d-block w-100", alt: "first - slide" %>
+            <% end %>
           </div>
           <% post.images.each_with_index do |image, index| %>
             <% next if index == 0 %>
@@ -50,8 +52,9 @@
         </div>
       </div>
       <div class="card-text py-2 row"><span style="margin-right: 8px; font-weight: bold; font-style: italic">
-        <%= post.user.username  %></span><span class="col-8 custom-two-lined-truncate"><%= post.caption %></span>
-        <small class="mt-2 fst-italic" style="color: rgba(0,0,0,0.7)"><%= time_ago_in_words(post.created_at) %> ago</small>
+        <%= post.user.username %></span><span class="col-8 custom-two-lined-truncate"><%= post.caption %></span>
+        <small class="mt-2 fst-italic" style="color: rgba(0,0,0,0.7)"><%= time_ago_in_words(post.created_at) %>
+          ago</small>
       </div>
     </div>
     <div class="card-footer d-flex justify-content-between bg-white">
