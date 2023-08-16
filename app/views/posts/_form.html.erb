@@ -1,53 +1,70 @@
-<%= form_with(model: post) do |form| %>
-  <% if post.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<!-- Modal -->
+<div class="modal fade modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <%= form_with(model: post) do |form| %>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body d-flex">
 
-      <ul>
-        <% post.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+          <div class="border border-secondary mx-2" style="width: 60%">
+            <%= form.file_field :images, multiple: true %>
+          </div>
+          <div>
+            <% if post.errors.any? %>
+              <div style="color: red">
+                <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+                <ul>
+                  <% post.errors.each do |error| %>
+                    <li><%= error.full_message %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
+            <%= image_tag (current_user.profile_picture.attached? ? current_user.profile_picture : "user-pp.png"),
+                          style: "border-radius: 50%; width:24px; height:24px; border: 1px solid rgba(0,0,0,0.35); padding:1px; margin-right:8px; " %> <%= current_user.username %>
+            <div>
+              <%= form.text_area :caption, rows: 7, placeholder: "Write a caption..." , class: " border-0" , style: "resize:none; outline:none; border:none; margin-top: 10px;"%>
+            </div>
+
+            <div>
+              <%= form.label :longitude, style: "display: block" %>
+              <%= form.text_field :longitude %>
+            </div>
+
+            <div>
+              <%= form.label :latitude, style: "display: block" %>
+              <%= form.text_field :latitude %>
+            </div>
+
+            <div>
+              <%= form.label :user_id, style: "display: block" %>
+              <%= form.collection_select :user_id, User.all, :id, :email %>
+            </div>
+
+
+            <div>
+              <%= form.label :allow_comments, style: "display: block" %>
+              <%= form.check_box :allow_comments %>
+            </div>
+
+            <div>
+              <%= form.label :show_likes_count, style: "display: block" %>
+              <%= form.check_box :show_likes_count %>
+            </div>
+          </div>
+
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <%= form.submit  class: "btn btn-primary"%>
+        </div>
+    <% end %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :caption, style: "display: block" %>
-    <%= form.text_field :caption %>
   </div>
-
-  <div>
-    <%= form.label :longitude, style: "display: block" %>
-    <%= form.text_field :longitude %>
-  </div>
-
-  <div>
-    <%= form.label :latitude, style: "display: block" %>
-    <%= form.text_field :latitude %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.collection_select :user_id, User.all, :id, :email %>
-  </div>
-
-
-  <div>
-    <%= form.label :allow_comments, style: "display: block" %>
-    <%= form.check_box :allow_comments %>
-  </div>
-
-  <div>
-    <%= form.label :show_likes_count, style: "display: block" %>
-    <%= form.check_box :show_likes_count %>
-  </div>
-
-  <div>
-    <%= form.label :images, style: "display: block" %>
-    <%= form.file_field :images, multiple: true %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

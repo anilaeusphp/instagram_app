@@ -1,4 +1,4 @@
-<div id="<%= dom_id post %>">
+<div class="my-3" id="<%= dom_id post %>">
 
   <div class="card customized-card-for-views">
     <div class="card-header d-flex align-items-center">
@@ -20,18 +20,19 @@
     </div>
 
     <div class="card-body">
-      <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
-        <div class="carousel-indicators">
+      <div id="carouselExampleIndicators-<%= post.id %>" class="carousel slide" data-bs-ride="true">
+      <div class="carousel-indicators">
           <% post.images.each_with_index do |image, index| %>
-            <button type="button" class="<%= index == 0 ? 'active bg-dark' : 'bg-dark' %>"
-                    <% index == 0 ? 'aria-current="true"' : '' %> data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%= index %>" aria-label="Slide <%= index + 1 %>"></button>
-          <% end %>
+          <button type="button" class="<%= index == 0 ? 'active bg-dark' : 'bg-dark' %>"
+                  <%= index == 0 ? 'aria-current="true"' : '' %> data-bs-target="#carouselExampleIndicators-<%= post.id %>" data-bs-slide-to="<%= index %>" aria-label="Slide <%= index + 1 %>"></button>
+
+      <% end %>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators-<%= post.id %>" data-bs-slide="prev">
           <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
         </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators-<%= post.id %>" data-bs-slide="next">
           <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
           <span class="visually-hidden">Next</span>
         </button>
