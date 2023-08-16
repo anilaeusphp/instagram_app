@@ -48,9 +48,9 @@
               <%= image_tag image, class: "d-block w-100", alt: "#{index} - slide" %>
             </div>
           <% end %>
-
         </div>
       </div>
+      <%= render "posts/post_actions", post: post %>
       <div class="card-text py-2 row"><span style="margin-right: 8px; font-weight: bold; font-style: italic">
         <%= post.user.username %></span><span class="col-8 custom-two-lined-truncate"><%= post.caption %></span>
         <small class="mt-2 fst-italic" style="color: rgba(0,0,0,0.7)"><%= time_ago_in_words(post.created_at) %>

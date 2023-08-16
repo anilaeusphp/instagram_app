@@ -183,4 +183,21 @@ body {
     width: 500px;
   }
 }
+@media (min-width: 700px) {
+  .align-modal-under{
+    width: 650px;
+  }
+}
 
+.filepond--item{
+  width: 100%;
+  height: 10rem ;
+}
+.filepond--root{
+  height: 20rem;
+}
+
+
+.color-red{
+  color: red;
+}

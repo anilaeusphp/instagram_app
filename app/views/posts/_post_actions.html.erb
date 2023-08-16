@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "post#{post.id}actions" do %>
+<div class="my-4">
+  <div class="d-flex justify-content-start align-items-center gap-2 mb-3">
+    <%= button_to toggle_like_path(post_id: post.id), method: :post, style: "border:none; background: transparent;" do %>
+      <i class="<%= post.likes.find_by(user: current_user) ? "fa-solid color-red" : "fa-regular" %>  fa-heart fa-xl hover-pointer hover-scale"></i>
+    <% end %>
+  </div>
+  <small class="fw-bold hover-pointer"><%= post.likes.count > 0 ? pluralize(post.likes.count, "like") : "No likes" %></small>
+</div>
+<% end %>

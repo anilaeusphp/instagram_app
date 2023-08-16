@@ -77,3 +77,5 @@ group :test do
   gem "webdrivers"
 end
 
+
+gem "activestorage-validator", "~> 0.4.0"

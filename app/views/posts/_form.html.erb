@@ -10,7 +10,7 @@
         <div class="modal-body d-flex align-modal-under">
 
           <div class="border border-secondary mx-2" style="width: 60%;">
-            <%= form.file_field :images, multiple: true, class: 'filepond'  %>
+            <%= form.file_field :images, multiple: true, class: 'filepond', required: true  %>
           </div>
           <div style="width: 40%; display: flex; flex-direction: column; flex-wrap: wrap">
             <% if post.errors.any? %>
@@ -52,12 +52,12 @@
             </a>
             <div class="collapse" id="collapseExample" style="width: 100%;">
               <div class="form-check form-switch" style="width: 100%;">
-                <%= form.check_box :allow_comments, style: "display: block", class: "form-check-input", type: "checkbox", role: "switch", id: "allowCommentSwitcher" %>
+                <%= form.check_box :allow_comments, style: "display: block", class: "form-check-input", type: "checkbox", role: "switch", id: "allowCommentSwitcher" , checked: true%>
                 <%= form.label :allow_comments,  class: "form-check-label", for: "allowCommentSwitcher" %>
               </div>
 
               <div class="form-check form-switch" style="width: 100%;">
-                <%= form.check_box :show_likes_count, style: "display: block", class: "form-check-input", type: "checkbox", role: "switch", id: "showLikesSwitcher" %>
+                <%= form.check_box :show_likes_count, style: "display: block", class: "form-check-input", type: "checkbox", role: "switch", id: "showLikesSwitcher", checked: true %>
                 <%= form.label :show_likes_count,  class: "form-check-label", for: "showLikesSwitcher" %>
               </div>
             </div>
