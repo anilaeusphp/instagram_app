@@ -1,10 +1,36 @@
 <%= turbo_frame_tag "post#{post.id}actions" do %>
-<div class="my-4">
-  <div class="d-flex justify-content-start align-items-center gap-2 mb-3">
-    <%= button_to toggle_like_path(post_id: post.id), method: :post, style: "border:none; background: transparent;" do %>
-      <i class="<%= post.likes.find_by(user: current_user) ? "fa-solid color-red" : "fa-regular" %>  fa-heart fa-xl hover-pointer hover-scale"></i>
-    <% end %>
+  <div class="my-4">
+    <div class="d-flex justify-content-start align-items-center gap-2 mb-3">
+      <%= button_to toggle_like_path(post_id: post.id), method: :post, style: "border:none; background: transparent;" do %>
+        <i class="<%= post.likes.find_by(user: current_user) ? "fa-solid color-red" : "fa-regular" %>  fa-heart fa-xl hover-pointer hover-scale"></i>
+      <% end %>
+    </div>
+    <a href="#" data-bs-toggle="modal" data-bs-target="#post<%= post.id %>_likesModal" style="text-decoration: none;" class="text-dark">
+      <small class="fw-bold hover-pointer"><%= post.likes.count > 0 ? pluralize(post.likes.count, "like") : "No likes" %></small>
+    </a>
   </div>
-  <small class="fw-bold hover-pointer"><%= post.likes.count > 0 ? pluralize(post.likes.count, "like") : "No likes" %></small>
-</div>
+
+
+  <!-- Modal -->
+  <div class="modal fade" id="post<%= post.id %>_likesModal" tabindex="-1" aria-labelledby="post<%= post.id %>_likesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="post<%= post.id %>_likesModalLabel">Liked by those</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <% post.likers.each do |liker| %>
+            <%= render "posts/liker", liker: liker %>
+          <% end %>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <% end %>
+
+
