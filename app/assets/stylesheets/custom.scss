@@ -177,6 +177,10 @@ body {
   .align-modal-under{
     width: 400px;
   }
-
+}
+@media(min-width: 500px){
+  .align-modal-under{
+    width: 500px;
+  }
 }
 
